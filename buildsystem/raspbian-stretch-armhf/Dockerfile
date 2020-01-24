@@ -41,8 +41,10 @@ RUN apt-get update && apt-get install -y --force-yes \
     equivs \
     rpm \
     alien \
-    dh-systemd
+    dh-systemd \
+    mariadb-server
 
 # Enable sudo without password
 RUN echo '%adm ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
